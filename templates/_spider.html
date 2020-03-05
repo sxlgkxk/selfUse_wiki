@@ -1,0 +1,91 @@
+{% extends "layout.html" %}{% block body %}<h1><a href='/c/wiki/tech/linux技术/爬虫'>wiki/tech/linux技术/爬虫 </a> spider </h1><hr/><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#知识点">知识点</a></li>
+<li><a href="#sites">sites</a></li>
+</ul>
+</div>
+<h3 id="知识点">知识点</h3>
+<ul>
+<li><a href="http://108.160.135.157:5000/v/chrome_headless">chrome_headless</a></li>
+<li>解析网页
+<ul>
+<li>pyquery</li>
+<li>正则</li>
+</ul></li>
+<li>请求方式
+<ul>
+<li>requests</li>
+<li>表单</li>
+<li>ip池
+<ul>
+<li><code>python proxyPool.py webserver</code></li>
+<li><code>python proxyPool.py schedule</code></li>
+</ul></li>
+<li>浏览器伪装</li>
+<li>访问频率</li>
+<li>断线重连</li>
+<li>ajax请求</li>
+</ul></li>
+<li>身份验证
+<ul>
+<li>验证码</li>
+<li>cookies</li>
+</ul></li>
+<li>数据库存储</li>
+<li>架构层优化
+<ul>
+<li>多线程</li>
+<li>分布式</li>
+<li>异步加载
+<ul>
+<li>asyncio
+<ul>
+<li>仅仅使用单线程, 就能达到多线程/进程的效果的工具</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>新技术扩展</li>
+<li>浏览器自动化
+<ul>
+<li><a href="https://www.v2ex.com/t/606683">v2ex教程</a></li>
+<li>puppeteer
+<ul>
+<li><a href="https://try-puppeteer.appspot.com/">playground</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/30213568">zhihu教程</a></li>
+</ul></li>
+</ul></li>
+<li>scrapy高级爬虫
+<ul>
+<li>整合了爬取, 处理数据, 存储数据的一条龙服务</li>
+</ul></li>
+<li>tampermonkey</li>
+<li><a href="https://github.com/facert/awesome-spider">awesome spider</a></li>
+</ul>
+<h3 id="sites">sites</h3>
+<ul>
+<li><a href="https://morvanzhou.github.io/tutorials/data-manipulation/scraping/">莫烦</a></li>
+<li><a href="https://piaosanlang.gitbooks.io/spiders/09day/README9.html">gitbook</a></li>
+<li><a href="https://www.zhihu.com/question/35461941">知乎问题，爬虫进阶</a></li>
+<li>博客教程
+<ul>
+<li><a href="https://cuiqingcai.com/1052.html">link</a></li>
+<li><a href="https://blog.csdn.net/kissazhu/article/details/80864877">scrcpy框架</a></li>
+<li><a href="https://www.lizenghai.com/archives/1459.html">link</a></li>
+<li><a href="https://www.jianshu.com/p/5033b4a107da">简书1</a></li>
+<li><a href="https://www.jianshu.com/p/939cce6945d0">简书2</a></li>
+<li><a href="https://juejin.im/post/5a3100c56fb9a045186abbe5">掘金</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/21479334">知乎专栏</a></li>
+</ul></li>
+</ul>
+</body>
+</html>{% endblock %}

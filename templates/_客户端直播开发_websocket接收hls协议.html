@@ -1,0 +1,90 @@
+{% extends "layout.html" %}{% block body %}<h1><a href='/c/wiki/product/tech/短延时协议'>wiki/product/tech/短延时协议 </a> 客户端直播开发_websocket接收hls协议 <i class='fas fa-edit btn_edit' style='color: #ddd' name='/v/wiki/product/tech/短延时协议/客户端直播开发_websocket接收hls协议?action=edit' onclick='window.location.href=this.getAttribute("name")'></i></h1><hr/><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<ul>
+<li>ws
+<ul>
+<li>源
+<ul>
+<li>监控
+<ul>
+<li>采集为直播源</li>
+<li>现成的各种工程方案: https://www.okcode.net/article/38497
+<ul>
+<li>方案列表2: https://juejin.im/post/5d183a71f265da1b6e65b8ff</li>
+<li>方案3: https://blog.csdn.net/shitDjango/article/details/88698699</li>
+<li>详细的工程代码实现: https://medium.com/<span class="citation">@alexcambose/webcam-live-streaming-with-websockets-and-base64-64b1b4992db8</span></li>
+</ul></li>
+<li>webAPI
+<ul>
+<li>MSE渲染
+<ul>
+<li>link: https://developer.mozilla.org/zh-CN/docs/Web/API/Media_Source_Extensions_API</li>
+</ul></li>
+<li>MediaDevices.getUserMedia({cons})
+<ul>
+<li>产生MediaStream, 分配给video标签的srcObject</li>
+<li>设置监听得到当前帧的图片,</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>视频服务</li>
+<li>方法
+<ul>
+<li>服务器不断生成ts文件和m3u8文件</li>
+<li>nginx伺服ts文件和m3u8文件</li>
+<li>前端video src设置为/site/file.m3u8, 可直接播放</li>
+<li>现成的库: video.js, hls.js</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>hls
+<ul>
+<li>hls将文件切成小块播放</li>
+<li>采用了http, 默认端口是80</li>
+<li>ts的解析
+<ul>
+<li>ts包的发送</li>
+<li>m3u8
+<ul>
+<li>即一个包含所有ts包的列表</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Dynamic Adaptive Streaming over HTTP
+<ul>
+<li>与hls同级, 但dash有最好的跨平台特性</li>
+<li>用静态服务器支持dash, 有利于cdn</li>
+</ul></li>
+<li>obs
+<ul>
+<li><p>推流:</p>
+<pre><code>sudo add-apt-repository ppa:obsproject/obs-studio
+sudo apt-get update &amp;&amp; sudo apt-get install obs-studio</code></pre></li>
+<li><p>代码</p>
+<pre><code>sudo nginx -s reload
+sudo vi /usr/local/nginx/nginx.conf
+# 修改rtmp{}一项, rtmp监听1925端口
+# 设置application live开启
+
+# obs设置源为screen capture
+# 访问rtmp://localhost:1935/live
+
+# vlc设置地址为rtmp://localhost:1935/live</code></pre></li>
+</ul></li>
+<li>rtmp
+<ul>
+<li>可以很方便地用现成的工具搭起来, 有nginx实现的rtmp服务器</li>
+<li>默认端口是1935</li>
+<li>由于flash的安全性, 移动端无法播放, 微信等移动app只能用hls</li>
+</ul></li>
+</ul>
+</body>
+</html>{% endblock %}

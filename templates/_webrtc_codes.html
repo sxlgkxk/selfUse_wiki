@@ -1,0 +1,77 @@
+{% extends "layout.html" %}{% block body %}<h1><a href='/c/文章随笔/领域学习与分析/项目/短延时协议/短延时流媒体协议/开发工具文档'>文章随笔/领域学习与分析/项目/短延时协议/短延时流媒体协议/开发工具文档 </a> webrtc_codes <i class='fas fa-edit btn_edit' style='color: #ddd' name='/v/文章随笔/领域学习与分析/项目/短延时协议/短延时流媒体协议/开发工具文档/webrtc_codes?action=edit' onclick='window.location.href=this.getAttribute("name")'></i></h1><hr/><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<h3 id="set-up-the-ice-candidates">set up the ice candidates</h3>
+<pre><code>localConnection.onicecandidate = e =&gt; !e.candidate || remoteConnection.addIceCandidate(e.candidate)
+.catch(handleAddCandidateError);
+
+remoteConnection.onicecandidate = e =&gt; !e.candidate || localConnection.addIceCandidate(e.candidate)
+.catch(handleAddCandidateError);</code></pre>
+<h3 id="start-the-connection-attempt">start the connection attempt</h3>
+<pre><code>localConnection.createOffer()
+.then(offer =&gt; localConnection.setLocalDescription(offer))
+.then(() =&gt; remoteConnection.setRemoteDescription(localConnection.localDescription))
+.then(() =&gt; remoteConnection.createAnswer())
+.then(answer =&gt; remoteConnection.setLocalDescription(answer))
+.then(() =&gt; localConnection.setRemoteDescription(remoteConnection.localDescription))
+.catch(handleCreateDescriptionError);</code></pre>
+<h3 id="handling-successful-peer-connection">handling successful peer connection</h3>
+<pre><code>function handleLocalAddCandidateSuccess() {
+    connectButton.disabled = true;
+}
+
+function handleRemoteAddCandidateSuccess() {
+    disconnectButton.disabled = false;
+}</code></pre>
+<h3 id="connecting-the-data-channel">connecting the data channel</h3>
+<pre><code>function receiveChannelCallback(event) {
+    receiveChannel = event.channel;
+    receiveChannel.onmessage = handleReceiveMessage;
+    receiveChannel.onopen = handleReceiveChannelStatusChange;
+    receiveChannel.onclose = handleReceiveChannelStatusChange;
+}</code></pre>
+<h3 id="handling-channel-status-changes">handling channel status changes</h3>
+<pre><code>function handleSendChannelStatusChange(event) {
+    if (sendChannel) {
+        var state = sendChannel.readyState;
+
+        if (state === &quot;open&quot;) {
+            messageInputBox.disabled = false;
+            messageInputBox.focus();
+            sendButton.disabled = false;
+            disconnectButton.disabled = false;
+            connectButton.disabled = true;
+        } else {
+            messageInputBox.disabled = true;
+            sendButton.disabled = true;
+            connectButton.disabled = false;
+            disconnectButton.disabled = true;
+        }
+    }
+}
+
+function handleReceiveChannelStatusChange(event) {
+    if (receiveChannel) {
+        console.log(&quot;Receive channel&#39;s status has changed to &quot; + receiveChannel.readyState);
+    }
+}</code></pre>
+<ul>
+<li>webrtc
+<ul>
+<li>webrtc是p2p, 传的是udp</li>
+<li>stun和turn只是为了实现p2p连接, 直连模式和中继模式</li>
+<li>webrtc是使用rtp来传流媒体的, 也有rtcp的数据, 这点和rtsp类似. 可以当成一种特殊的rtsp实现</li>
+<li>一般用于视频会议, 占资源很高, 可以一对多, 但不适合一对很多用户来直播</li>
+<li>视频封装格式mp4</li>
+<li>应用场景为视频会议</li>
+</ul></li>
+</ul>
+</body>
+</html>{% endblock %}

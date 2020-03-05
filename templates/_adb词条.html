@@ -1,0 +1,142 @@
+{% extends "layout.html" %}{% block body %}<h1><a href='/c/技术总结/linux技术词条/shell体系'>技术总结/linux技术词条/shell体系 </a> adb词条 <i class='fas fa-edit btn_edit' style='color: #ddd' name='/v/技术总结/linux技术词条/shell体系/adb词条?action=edit' onclick='window.location.href=this.getAttribute("name")'></i></h1><hr/><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<ul>
+<li>adb
+<ul>
+<li>刷新mtp <code>adb shell am broadcast -a android.intent.action.MEDIA_MOUNTED -d file:///sdcard</code> ```bash 速度</li>
+</ul></li>
+</ul>
+<h1 id="binbash">!/bin/bash</h1>
+<p>login(){ adb shell input keyevent 223 # close screen sleep 1 adb shell input keyevent 223 # close screen sleep 1 adb shell input keyevent 223 # close screen sleep 1 adb shell input keyevent 223 # close screen sleep 1 adb shell input keyevent 224 # open screen sleep 1</p>
+<pre><code>adb shell input keyevent SPACE
+sleep 1
+adb shell input text 1111
+sleep 1
+
+
+adb shell input keyevent HOME   # enter home
+sleep 1
+adb shell input keyevent MENU   # enter process manage
+sleep 1
+adb shell input tap 550 2000    # erase all
+sleep 3
+
+adb shell input tap 650 200     # enter bili
+sleep 8
+adb shell input tap 270 270
+sleep 1
+
+adb shell input tap 50 100  # sidebar
+sleep 1
+
+adb shell input tap 120 2100    # setting
+sleep 1
+
+adb shell input swipe 500 1000 500 500  # scroll to bottom
+sleep 1
+
+adb shell input tap 500 2050    # exit
+sleep 1
+
+adb shell input keyevent TAB
+sleep 1
+adb shell input keyevent TAB
+sleep 1
+adb shell input keyevent ENTER
+sleep 1
+
+adb shell input keyevent SEARCH
+sleep 1
+
+adb shell input text av25618330 # enter av numbere
+sleep 1
+
+adb shell input keyevent ENTER  # enter video
+sleep 10
+
+adb shell input tap 950 1100    # click share button
+sleep 1
+
+adb shell input tap 110 1500    # share to bili
+sleep 1
+
+adb shell input text $1     # enter account
+sleep 1
+
+adb shell input tap 500 1200    # hide autocomplete
+sleep 1
+
+adb shell input tap 500 750 # click passwd input
+sleep 1
+
+adb shell input text 123zxcbl   # enter passwd
+sleep 1
+
+adb shell input tap 800 900 # click login
+sleep 1
+
+adb shell input text $(/home/gkxk/repo/bin/funwords)    # enter passwd
+sleep 5
+
+adb shell input tap 1000 150    # click publish
+sleep 1
+
+adb shell input keyevent HOME   # enter home
+sleep 1
+adb shell input keyevent MENU   # enter process manage
+sleep 1
+adb shell input tap 550 2000    # erase all
+sleep 3
+
+adb shell input tap 650 200     # enter bili
+sleep 8
+adb shell input tap 270 270
+sleep 1
+
+adb shell input tap 50 100  # sidebar
+sleep 1
+adb shell input tap 150 700 # enter personal space
+sleep 10
+
+adb shell input tap 1000 1000   # manage blog
+sleep 1
+adb shell input tap 500 1900    # delete
+sleep 1
+
+adb shell input keyevent TAB
+sleep 1
+adb shell input keyevent TAB
+sleep 1
+adb shell input keyevent ENTER
+sleep 1
+
+adb shell input keyevent HOME   # enter home
+sleep 1
+adb shell input keyevent MENU   # enter process manage
+sleep 1
+adb shell input tap 550 2000    # erase all
+sleep 3
+adb shell input keyevent 223    # close screen
+sleep 1</code></pre>
+<p>}</p>
+<p>curday=<code>date +%Y-%m-%d</code></p>
+<p>logday=<code>tail /home/gkxk/repo/bin/.bpoint.txt -n 1</code></p>
+<p>if [ $curday = $logday ];then echo equal elif [ <code>adb devices|wc -l</code> = 3 ];then echo $curday &gt;&gt; /home/gkxk/repo/bin/.bpoint.txt login 1860 login 1860 echo $curday &gt;&gt; /home/gkxk/repo/bin/.bpoint.txt fi</p>
+<pre><code>  
+  
+written by gkxk at 2019-09-21 00:28
+***
+
+## keyevent list
+</code></pre>
+<p>0 --&gt; &quot;KEYCODE_UNKNOWN&quot; 1 --&gt; &quot;KEYCODE_MENU&quot; 2 --&gt; &quot;KEYCODE_SOFT_RIGHT&quot; 3 --&gt; &quot;KEYCODE_HOME&quot; 4 --&gt; &quot;KEYCODE_BACK&quot; 5 --&gt; &quot;KEYCODE_CALL&quot; 6 --&gt; &quot;KEYCODE_ENDCALL&quot; 7 --&gt; &quot;KEYCODE_0&quot; 8 --&gt; &quot;KEYCODE_1&quot; 9 --&gt; &quot;KEYCODE_2&quot; 10 --&gt; &quot;KEYCODE_3&quot; 11 --&gt; &quot;KEYCODE_4&quot; 12 --&gt; &quot;KEYCODE_5&quot; 13 --&gt; &quot;KEYCODE_6&quot; 14 --&gt; &quot;KEYCODE_7&quot; 15 --&gt; &quot;KEYCODE_8&quot; 16 --&gt; &quot;KEYCODE_9&quot; 17 --&gt; &quot;KEYCODE_STAR&quot; 18 --&gt; &quot;KEYCODE_POUND&quot; 19 --&gt; &quot;KEYCODE_DPAD_UP&quot; 20 --&gt; &quot;KEYCODE_DPAD_DOWN&quot; 21 --&gt; &quot;KEYCODE_DPAD_LEFT&quot; 22 --&gt; &quot;KEYCODE_DPAD_RIGHT&quot; 23 --&gt; &quot;KEYCODE_DPAD_CENTER&quot; 24 --&gt; &quot;KEYCODE_VOLUME_UP&quot; 25 --&gt; &quot;KEYCODE_VOLUME_DOWN&quot; 26 --&gt; &quot;KEYCODE_POWER&quot; 27 --&gt; &quot;KEYCODE_CAMERA&quot; 28 --&gt; &quot;KEYCODE_CLEAR&quot; 29 --&gt; &quot;KEYCODE_A&quot; 30 --&gt; &quot;KEYCODE_B&quot; 31 --&gt; &quot;KEYCODE_C&quot; 32 --&gt; &quot;KEYCODE_D&quot; 33 --&gt; &quot;KEYCODE_E&quot; 34 --&gt; &quot;KEYCODE_F&quot; 35 --&gt; &quot;KEYCODE_G&quot; 36 --&gt; &quot;KEYCODE_H&quot; 37 --&gt; &quot;KEYCODE_I&quot; 38 --&gt; &quot;KEYCODE_J&quot; 39 --&gt; &quot;KEYCODE_K&quot; 40 --&gt; &quot;KEYCODE_L&quot; 41 --&gt; &quot;KEYCODE_M&quot; 42 --&gt; &quot;KEYCODE_N&quot; 43 --&gt; &quot;KEYCODE_O&quot; 44 --&gt; &quot;KEYCODE_P&quot; 45 --&gt; &quot;KEYCODE_Q&quot; 46 --&gt; &quot;KEYCODE_R&quot; 47 --&gt; &quot;KEYCODE_S&quot; 48 --&gt; &quot;KEYCODE_T&quot; 49 --&gt; &quot;KEYCODE_U&quot; 50 --&gt; &quot;KEYCODE_V&quot; 51 --&gt; &quot;KEYCODE_W&quot; 52 --&gt; &quot;KEYCODE_X&quot; 53 --&gt; &quot;KEYCODE_Y&quot; 54 --&gt; &quot;KEYCODE_Z&quot; 55 --&gt; &quot;KEYCODE_COMMA&quot; 56 --&gt; &quot;KEYCODE_PERIOD&quot; 57 --&gt; &quot;KEYCODE_ALT_LEFT&quot; 58 --&gt; &quot;KEYCODE_ALT_RIGHT&quot; 59 --&gt; &quot;KEYCODE_SHIFT_LEFT&quot; 60 --&gt; &quot;KEYCODE_SHIFT_RIGHT&quot; 61 --&gt; &quot;KEYCODE_TAB&quot; 62 --&gt; &quot;KEYCODE_SPACE&quot; 63 --&gt; &quot;KEYCODE_SYM&quot; 64 --&gt; &quot;KEYCODE_EXPLORER&quot; 65 --&gt; &quot;KEYCODE_ENVELOPE&quot; 66 --&gt; &quot;KEYCODE_ENTER&quot; 67 --&gt; &quot;KEYCODE_DEL&quot; 68 --&gt; &quot;KEYCODE_GRAVE&quot; 69 --&gt; &quot;KEYCODE_MINUS&quot; 70 --&gt; &quot;KEYCODE_EQUALS&quot; 71 --&gt; &quot;KEYCODE_LEFT_BRACKET&quot; 72 --&gt; &quot;KEYCODE_RIGHT_BRACKET&quot; 73 --&gt; &quot;KEYCODE_BACKSLASH&quot; 74 --&gt; &quot;KEYCODE_SEMICOLON&quot; 75 --&gt; &quot;KEYCODE_APOSTROPHE&quot; 76 --&gt; &quot;KEYCODE_SLASH&quot; 77 --&gt; &quot;KEYCODE_AT&quot; 78 --&gt; &quot;KEYCODE_NUM&quot; 79 --&gt; &quot;KEYCODE_HEADSETHOOK&quot; 80 --&gt; &quot;KEYCODE_FOCUS&quot; 81 --&gt; &quot;KEYCODE_PLUS&quot; 82 --&gt; &quot;KEYCODE_MENU&quot; 83 --&gt; &quot;KEYCODE_NOTIFICATION&quot; 84 --&gt; &quot;KEYCODE_SEARCH&quot; 85 --&gt; &quot;TAG_LAST_KEYCODE&quot; ```</p>
+</body>
+</html>{% endblock %}

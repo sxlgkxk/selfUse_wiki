@@ -1,0 +1,53 @@
+{% extends "layout.html" %}{% block body %}<h1><a href='/c/wiki/tech/linux技术/网站全栈'>wiki/tech/linux技术/网站全栈 </a> blog </h1><hr/><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#知识点">知识点</a><ul>
+<li><a href="#sites"># sites</a></li>
+</ul></li>
+</ul>
+</div>
+<h1 id="知识点">知识点</h1>
+<ul>
+<li><a href="108.160.135.157:5000/markdown_convert_to_html">markdown convert to html</a></li>
+<li><a href="108.160.135.157:5000/use_travis_deploy_github_blog_automatically">use_travis_deploy_github_blog_automatically</a></li>
+<li>https
+<ul>
+<li><p>flask临时证书: 本地pip安装失败</p>
+<pre><code>sudo apt-get install libssl-dev
+pip3 install pyOpenSSL</code></pre></li>
+<li>自签名证书: <code>openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365</code>
+<ul>
+<li><code>cert.pem</code>存储证书,<code>key.pem</code>存储私匙</li>
+</ul></li>
+<li><a href="https://letsencrypt.org/">letsencrypt</a>
+<ul>
+<li><a href="https://certbot.eff.org/">certbot</a>: 自动化程序</li>
+</ul></li>
+</ul></li>
+<li>html劫持
+<ul>
+<li><p><a href="https://en.wikipedia.org/wiki/Framekiller">framekiller</a></p>
+<pre><code>   if(self == top) {
+   document.documentElement.style.display = &#39;block&#39;; 
+   } else {
+   top.location = self.location; 
+   }</code></pre></li>
+</ul></li>
+<li>配置nginx监听转发</li>
+<li>markdown渲染
+<ul>
+<li>pandoc：<code>apt install pandoc</code></li>
+</ul></li>
+</ul>
+<h2 id="sites"># sites</h2>
+</body>
+</html>{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "layout.html" %}{% block body %}<h1><a href='/c/技术总结/linux技术词条/web体系'>技术总结/linux技术词条/web体系 </a> python库-requests词条 <i class='fas fa-edit btn_edit' style='color: #ddd' name='/v/技术总结/linux技术词条/web体系/python库-requests词条?action=edit' onclick='window.location.href=this.getAttribute("name")'></i></h1><hr/><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<p>header:</p>
+<pre><code>
+url=&#39;https://www.gamersky.com/&#39;
+headers={&#39;User-Agent&#39;:&#39;Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36&#39;,&#39;Referer&#39;:&#39;ttps://www.zhihu.com/&#39;}
+r=requests.get(url,headers=headers)
+</code></pre>
+<p>中文乱码： r.encoding='utf-8'</p>
+</body>
+</html>{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "layout.html" %}{% block body %}<h1><a href='/c/技术总结/linux技术词条/web体系'>技术总结/linux技术词条/web体系 </a> flask词条 <i class='fas fa-edit btn_edit' style='color: #ddd' name='/v/技术总结/linux技术词条/web体系/flask词条?action=edit' onclick='window.location.href=this.getAttribute("name")'></i></h1><hr/><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<ul>
+<li>flask
+<ul>
+<li>method
+<ul>
+<li>import flask.request</li>
+<li>判断request.method</li>
+</ul></li>
+<li>uwsgi
+<ul>
+<li>pip3 install uwsgi
+<ul>
+<li>clang g++ gcc build-essential python3-devel</li>
+<li>lxml, liblxml2</li>
+</ul></li>
+<li>api
+<ul>
+<li><code>--http 8000</code></li>
+<li><code>--module main.app</code></li>
+<li><code>--ini uwsgi.ini</code></li>
+<li><code>uwsgi --reload uwsgi.pid</code></li>
+<li><code>uwsgi --stop uwsgi.pid</code></li>
+</ul></li>
+<li>nginx
+<ul>
+<li>一个web服务器只负责提供文件, 与应用通信需要借助工具帮助(web服务器网关接口, WSGI), uWSGI是一种WSGI的实现,</li>
+<li><p>配置文件, 将.conf文件链接到/etc/nginx/sites-enabled/</p>
+<pre><code>upstream flask{
+    # server unix:///path/to/your/mysite/mysite.sock; # for a file socket
+    server 127.0.0.1:8001; # for a web port socket (we&#39;ll use this first)
+}
+
+server{
+    listen 8000;
+    charset utf-8;
+    server_name hostname.com;
+    client_max_body_size 75M;
+
+    location /static{
+        alias /path/to/static;
+    }
+
+    location /{
+        uwsgi_pass flask;
+        include /path/to/uwsgi_params;
+    }
+}</code></pre></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</body>
+</html>{% endblock %}

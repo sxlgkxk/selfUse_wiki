@@ -1,0 +1,37 @@
+{% extends "layout.html" %}{% block body %}<h1><a href='/c/技术总结/linux技术词条/OS体系'>技术总结/linux技术词条/OS体系 </a> termux词条 <i class='fas fa-edit btn_edit' style='color: #ddd' name='/v/技术总结/linux技术词条/OS体系/termux词条?action=edit' onclick='window.location.href=this.getAttribute("name")'></i></h1><hr/><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<p>abbr: 手机,安卓,tech,termux,下载</p>
+<h1 id="知识框架">知识框架</h1>
+<ul>
+<li>apk下载链接
+<ul>
+<li>baidupan</li>
+<li>chrome browser</li>
+<li>termux</li>
+<li>termuxapi</li>
+<li>v2ray</li>
+</ul></li>
+<li>一键安装脚本 ``` pkg install fish -y # chsh fish pkg install curl -y curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish pkg install tmux -y pkg install neovim -y pkg install openssh -y pkg install git -y pkg install aria2 -y pkg install python -y pkg install ranger -y pkg install nodejs -y pkg install termux-api -y bash -c &quot;$(curl -fsSL https://git.io/oh-my-termux)&quot; pip3 install flask pip3 install youtube-dl npm i -g pm2 mkdir ~/repo mkdir ~/repo/git mkdir ~/repo/bin mkdir ~/repo/work</li>
+</ul>
+<p>website_init #!bash</p>
+<p>cd ~/storage/downloads pm2 start &quot; aria2c --enable-rpc --rpc-listen-all&quot; -n aria2_rpc</p>
+<p>cd ~/repo/git/webui-aria2 git clone https://github.com/ziahamza/webui-aria2.git --depth 1 pm2 start &quot;node node-server.js 5008&quot; -n aria2_web</p>
+<h1 id="thinkpad-5008">thinkpad: 5008</h1>
+<h1 id="mi6">mi6:</h1>
+<h1 id="mi4-5008">mi4: 5008</h1>
+<h1 id="mi2-5008">mi2: 5008</h1>
+<h1 id="music">music</h1>
+<h1 id="music-脚本">music 脚本</h1>
+<p>pip3 install tqdm mutagen requests pycrypto</p>
+<p>adb pull adb shell rm /path/to/file adb shell ls /path/</p>
+<p>```</p>
+</body>
+</html>{% endblock %}

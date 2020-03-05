@@ -1,0 +1,85 @@
+{% extends "layout.html" %}{% block body %}<h1><a href='/c/wiki/tech/linux技术/游戏开发'>wiki/tech/linux技术/游戏开发 </a> phaser.js <i class='fas fa-edit btn_edit' style='color: #ddd' name='/v/wiki/tech/linux技术/游戏开发/phaser.js?action=edit' onclick='window.location.href=this.getAttribute("name")'></i></h1><hr/><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#phaser.js">phaser.js</a></li>
+</ul>
+</div>
+<h1 id="phaser.js">phaser.js</h1>
+<ul>
+<li>links
+<ul>
+<li>github: https://github.com/photonstorm/phaser</li>
+<li>官网: https://phaser.io/
+<ul>
+<li>example, learn, community, news
+<ul>
+<li>论坛: https://phaser.discourse.group/</li>
+<li>API: https://photonstorm.github.io/phaser3-docs/</li>
+<li>Example: https://labs.phaser.io/index.html?dir=&amp;q=</li>
+</ul></li>
+<li>教程1: https://phaser.io/tutorials/getting-started-phaser3</li>
+<li>教程2: https://phaser.io/tutorials/making-your-first-phaser-3-game</li>
+</ul></li>
+<li>素材; https://indienova.com/sp/gameDevResource
+<ul>
+<li>纹理texture: https://www.textures.com/</li>
+<li>deviantart: https://www.deviantart.com/</li>
+<li>krita: https://docs.krita.org/zh_CN/reference_manual/krita_4_preset_bundle.html</li>
+<li>piskel</li>
+</ul></li>
+<li>rpg:
+<ul>
+<li>link1: https://phaser.io/news/2018/03/tiny-rpg-forest</li>
+<li>link2: https://gamedevacademy.org/how-to-create-a-turn-based-rpg-game-in-phaser-3-part-1/</li>
+<li>link3: https://phasertutorials.com/tag/rpg-tutorial/</li>
+<li>link4: https://gamedevacademy.org/phaser-rpg-tutorial-3/</li>
+<li>成品案例: https://github.com/tlmader/theodoric</li>
+<li></li>
+</ul></li>
+</ul></li>
+<li>API
+<ul>
+<li>preload, create, update</li>
+<li>game=Phaser.Game(config)
+<ul>
+<li>config: type:Phaser.AUTO
+<ul>
+<li>width, height, scene:{preload:preload}</li>
+</ul></li>
+</ul></li>
+<li>preload
+<ul>
+<li>baseURL: this.load.baseURL='static/media/image/piskel/'</li>
+<li>loadImage: this.load.image('player', 'human/player/head1.png');</li>
+<li>loadSprite: this.load.spritesheet('','',{frameWidth:32, frameHeight:48})</li>
+</ul></li>
+<li>create
+<ul>
+<li>addImage: this.add.image(0,0,'sky').setOrigin(0,0)</li>
+<li>physics staticGroup: platform=this.physics.add.staticGroup()
+<ul>
+<li>init node(with scale): platform.create(200,200,'ground').setScale(2).refreshBody()</li>
+</ul></li>
+<li>physics dynamic: player=this.physics.add.sprite(1,1,'s')
+<ul>
+<li>set attributes: player.setBounce(0.2), .setCollideWorldBounds(true)</li>
+</ul></li>
+<li>control: keys=this.input.keyboard.createCursorKeys();
+<ul>
+<li>if keys.left.isDown</li>
+</ul></li>
+<li>scale: this.scale.on('resize',resize)</li>
+</ul></li>
+</ul></li>
+</ul>
+</body>
+</html>{% endblock %}

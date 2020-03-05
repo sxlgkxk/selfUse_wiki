@@ -1,0 +1,66 @@
+{% extends "layout.html" %}{% block body %}<h1><a href='/c/技术总结/linux技术词条/web体系'>技术总结/linux技术词条/web体系 </a> js语法-Promise词条 <i class='fas fa-edit btn_edit' style='color: #ddd' name='/v/技术总结/linux技术词条/web体系/js语法-Promise词条?action=edit' onclick='window.location.href=this.getAttribute("name")'></i></h1><hr/><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<p><strong>using callbacks:</strong></p>
+<pre><code>function successCallback(result) {
+  console.log(&quot;Audio file ready at URL: &quot; + result);
+}
+
+function failureCallback(error) {
+  console.error(&quot;Error generating audio file: &quot; + error);
+}
+
+createAudioFileAsync(audioSettings, successCallback, failureCallback);</code></pre>
+<p><strong>using Promise:</strong><br />
+version1</p>
+<pre><code>createAudioFileAsync(audioSettings).then(successCallback, failureCallback);</code></pre>
+<p>version2</p>
+<pre><code>const promise = createAudioFileAsync(audioSettings); 
+promise.then(successCallback, failureCallback);</code></pre>
+<p><strong>chaining:</strong><br />
+version1</p>
+<pre><code>const promise = doSomething();
+const promise2 = promise.then(successCallback, failureCallback);</code></pre>
+<p>version2</p>
+<pre><code>const promise2 = doSomething().then(successCallback, failureCallback);</code></pre>
+<p><strong>chaining example:</strong><br />
+old:</p>
+<pre><code>doSomething(function(result) {
+      doSomethingElse(result, function(newResult) {
+              doThirdThing(newResult, function(finalResult) {
+                        console.log(&#39;Got the final result: &#39; + finalResult);
+                            }, failureCallback);
+                }, failureCallback);
+}, failureCallback);</code></pre>
+<p>new version1:</p>
+<pre><code>doSomething()
+.then(function(result) {
+  return doSomethingElse(result);
+})
+.then(function(newResult) {
+  return doThirdThing(newResult);
+})
+.then(function(finalResult) {
+  console.log(&#39;Got the final result: &#39; + finalResult);
+})
+.catch(failureCallback);</code></pre>
+<p>catch(failureCallback) is short for then(null, failureCallback)</p>
+<p>new version1:</p>
+<pre><code>doSomething()
+.then(result =&gt; doSomethingElse(result))
+.then(newResult =&gt; doThirdThing(newResult))
+.then(finalResult =&gt; {
+  console.log(`Got the final result: ${finalResult}`);
+})
+.catch(failureCallback);</code></pre>
+<p>() =&gt; x is short for () =&gt; { return x; }).</p>
+<h3 id="arrow-functions">arrow functions</h3>
+</body>
+</html>{% endblock %}

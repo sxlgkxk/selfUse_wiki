@@ -1,0 +1,135 @@
+{% extends "layout.html" %}{% block body %}<h1><a href='/c/技术总结/专业领域词条/电子信息体系'>技术总结/专业领域词条/电子信息体系 </a> 射频通信电路体系 <i class='fas fa-edit btn_edit' style='color: #ddd' name='/v/技术总结/专业领域词条/电子信息体系/射频通信电路体系?action=edit' onclick='window.location.href=this.getAttribute("name")'></i></h1><hr/><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title>射频通信电路</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+</head>
+<body>
+<div id="header">
+<h1 class="title">射频通信电路</h1>
+<h3 class="date">2018-09-23 11:21:24</h3>
+</div>
+<p>modified 射频 选频与阻抗变换</p>
+<blockquote>
+<p>LC组成</p>
+<p>幅频特性</p>
+<p>相频特性</p>
+<p><span class="math inline">\(f_0\)</span>：中心频率 <img src="../images/pic.jpg" alt="sd" /></p>
+<p><embed src="https://private.codecogs.com/gif.latex?BW_%7B3dB%7D" />:通频带，幅值降为<embed src="https://private.codecogs.com/gif.latex?%5Cfrac%7B1%7D%7B%5Csqrt%7B2%7D%7D" />时的上下限之差</p>
+<p>带内波动</p>
+<p>选择性（矩形系数）：<embed src="https://private.codecogs.com/gif.latex?K_%7B0.1%7D%3D%5Cfrac%7BBW_%7B0.1%7D%7D%7BBW_%7B1/%5Csqrt%7B2%7D%7D%7D" />，理想为1</p>
+<p>插入损耗：<embed src="https://private.codecogs.com/gif.latex?L%3D%5Cfrac%7BP_%7Bpre%7D%7D%7BP_%7Bsucc%7D%7D" /></p>
+<p>输入输出阻抗：</p>
+<p>网络的幅相频特性：<embed src="https://private.codecogs.com/gif.latex?%5C%5CH%28%5Comega%29%3DA%5C%5C%20%5Cvarphi%28%5Comega%29%3D-%5Comega%20t" /></p>
+</blockquote>
+<p>LC串并联谐振</p>
+<blockquote>
+<div class="figure">
+<img src="/home/gkxk/Pictures/Screenshot%20from%202018-09-20%2017-26-55.png" alt="Screenshot from 2018-09-20 17-26-55" />
+<p class="caption">Screenshot from 2018-09-20 17-26-55</p>
+</div>
+<p>导纳：<embed src="https://private.codecogs.com/gif.latex?Y%28%5Comega%29%3DG+j%5Comega%20C%20+%20%5Cfrac%7B1%7D%7Bj%5Comega%20L%7D" /></p>
+</blockquote>
+<blockquote>
+<p>谐振时，导纳为G：阻抗最大，导纳最小</p>
+<p>回路特性阻抗：<embed src="https://private.codecogs.com/gif.latex?%5Crho%3D%5Comega%20_0L%3D%5Cfrac%7B1%7D%7B%5Comega%20_0C%7D" /></p>
+<p>谐振角频率：<embed src="https://private.codecogs.com/gif.latex?%5Comega%20_0%3D2%5Cpi%20f_0%3D%5Cfrac%7B1%7D%7B%5Csqrt%7BLC%7D%7D" /></p>
+<p>品质因数（回路的储能除于耗能）：<embed src="https://private.codecogs.com/gif.latex?2%5Cpi%20%5Cfrac%7Bstore%7D%7Bconsume%7D%3D2%5Cpi%20%5Cfrac%7BCV%5E2%7D%7BTV%5E2/R%7D%3D%5Cfrac%7B%5Comega%20_0C%7D%7BG%7D%3D%5Cfrac%7BR%7D%7B%5Comega%20_0L%7D%3D%5Cfrac%7BR%7D%7B%5Crho%7D" /></p>
+<div class="figure">
+<img src="/home/gkxk/Pictures/Screenshot%20from%202018-09-20%2017-28-02.png" alt="Screenshot from 2018-09-20 17-28-02" />
+<p class="caption">Screenshot from 2018-09-20 17-28-02</p>
+</div>
+<p>参数同上</p>
+<div class="figure">
+<embed src="https://private.codecogs.com/gif.latex?Q%3D%5Cfrac%7BR%7D%7B%5Crho%7D" />
+<p class="caption">Q=</p>
+</div>
+</blockquote>
+<p>选频特性</p>
+<blockquote>
+<p>并联的输出表达式：<embed src="https://private.codecogs.com/gif.latex?%5C%5CV%3D%5Cfrac%7BI%7D%7BY%7D%3D%5Cfrac%7BI%7D%7B1+jQ%28%5Cfrac%7B%5Comega%7D%7B%5Comega%20_0%7D-%5Cfrac%7B%5Comega%20_0%7D%7B%5Comega%7D%29%7D%3D%5Cfrac%7BV%7D%7B1+j%5Cxi%20%7D%5C%5Cx" /></p>
+<p>广义失谐：<embed src="https://private.codecogs.com/gif.latex?%5Cxi%3DQ%28%5Cfrac%7B%5Comega%7D%7B%5Comega%20_0%7D-%5Cfrac%7B%5Comega%20_0%7D%7B%5Comega%7D%29" /></p>
+<p><embed src="https://private.codecogs.com/gif.latex?%5Comega%20_0" />附近时，<embed src="https://private.codecogs.com/gif.latex?%5Cxi%3DQ%5Cfrac%7B2%28%5Comega%20-%5Comega%20_0%29%7D%7B%5Comega%20_0%7D" />,</p>
+<p>​ <embed src="https://private.codecogs.com/gif.latex?V%3D%5Cfrac%7BV%7D%7B%5Csqrt%7B1+%28Q%5Cfrac%7B2%5CDelta%20%5Comega%7D%7B%5Comega%20_0%7D%29%5E2%7D%7De%5E%7Bj%5Cvarphi%7D" /></p>
+<p>幅频特性：<embed src="https://private.codecogs.com/gif.latex?S%3D%5Cfrac%7B1%7D%7B%5Csqrt%7B1+%28Q%5Cfrac%7B2%5CDelta%20%5Comega%7D%7B%5Comega%20_0%7D%29%5E2%7D%7D" /></p>
+<p>通频带：<embed src="https://private.codecogs.com/gif.latex?BW_%7B3dB%7D%3D2%5CDelta%20f%3D%5Cboldsymbol%7B%5Cfrac%7Bf_0%7D%7BQ%7D%7D" /></p>
+<p>相频特性斜率：<embed src="https://private.codecogs.com/gif.latex?%5C%5C%5Cvarphi%3D-atanQ%5Cfrac%7B2%5CDelta%20%5Comega%20%7D%7B%5Comega%20_0%7D%5C%5C%20%5Cfrac%7Bd%5Cvarphi%20%7D%7Bd%5Comega%7D%7C_%7B%5Comega%3D%5Comega%20_0%7D%3D-%5Cfrac%7B2Q%7D%7B%5Comega%20_0%7D" /></p>
+</blockquote>
+<p>实际并联回路（选频）</p>
+<blockquote>
+<p>实际：<img src="/home/gkxk/Pictures/Screenshot%20from%202018-09-20%2017-28-23.png" alt="Screenshot from 2018-09-20 17-28-23" /></p>
+<p>等效：<img src="/home/gkxk/Pictures/Screenshot%20from%202018-09-20%2017-29-27.png" alt="Screenshot from 2018-09-20 17-29-27" /></p>
+<p>串并联阻抗互换：（straight、parallel）</p>
+<div class="figure">
+<img src="/home/gkxk/Pictures/Screenshot%20from%202018-09-20%2017-30-01.png" alt="Screenshot from 2018-09-20 17-30-01" />
+<p class="caption">Screenshot from 2018-09-20 17-30-01</p>
+</div>
+<p>阻抗相等：<embed src="https://private.codecogs.com/gif.latex?%5Cboldsymbol%7B%5C%5CR_P%3Dr_S%281+Q%5E2%29%20%5C%5CX_P%3DX_S%281+%5Cfrac%7B1%7D%7BQ%5E2%7D%29%7D" /></p>
+<p>串联支路、等效并联支路的Q：<embed src="https://private.codecogs.com/gif.latex?Q%3D%5Cfrac%7BX_S%7D%7BR_S%7D%3D%5Cfrac%7BR_P%7D%7BX_P%7D%3D%28%5Cfrac%7B%5Comega_0%20L%7D%7BR%7D%29" /></p>
+<p>等效后：<embed src="https://private.codecogs.com/gif.latex?%5Comega%20_P%3D%5Comega_0%20%5Csqrt%7B1-%5Cfrac%7B1%7D%7BQ%5E2%7D%7D" /></p>
+<p>高Q时的空载：<embed src="https://private.codecogs.com/gif.latex?%5C%5CR_P%3DrQ_0%5E2%5C%5C%20L_P%3DL%20%5C%5CR_P%3DQ_0%5E2r%3DQ_0%5Crho%3D%5Cfrac%7BL%7D%7BCr%7D" /></p>
+<p>有载高Q：<embed src="https://private.codecogs.com/gif.latex?Q_e%3D%5Cfrac%7BR_%7Ball%7D%7D%7B%5Crho%7D" /></p>
+<p>(为减少外电路对Q的影响，可采用部分接入)</p>
+</blockquote>
+<p>阻抗变换(变压器）</p>
+<blockquote>
+<p>电流方向？</p>
+<div class="figure">
+<img src="/home/gkxk/Pictures/Screenshot%20from%202018-09-20%2017-30-31.png" alt="Screenshot from 2018-09-20 17-30-31" />
+<p class="caption">Screenshot from 2018-09-20 17-30-31</p>
+</div>
+<p>由<embed src="https://private.codecogs.com/gif.latex?%5Cfrac%7BV_1%7D%7BV_2%7D%3D%5Cfrac%7BN_1%7D%7BN_2%7D%2C%20%5Cfrac%7BI_1%7D%7BI_2%7D%3D%5Cfrac%7BN_2%7D%7BN_1%7D" />可得<embed src="https://private.codecogs.com/gif.latex?%5Cfrac%7BR_L%27%7D%7BR_L%7D%3D%28%5Cfrac%7BN_1%7D%7BN_2%7D%29%5E2" /></p>
+</blockquote>
+<p>部分接入23</p>
+<blockquote>
+<p>部分接入：<img src="/home/gkxk/Pictures/Screenshot%20from%202018-09-20%2017-30-46.png" alt="Screenshot from 2018-09-20 17-30-46" /></p>
+<ul>
+<li><strong>并联支路Q足够大</strong>（<embed src="https://private.codecogs.com/gif.latex?R%5Cgg%20X_2" />）</li>
+</ul>
+<p>接入系数：<embed src="https://private.codecogs.com/gif.latex?P%3D%5Cfrac%7BX_2%7D%7BX_1+X_2%7D" /></p>
+<div class="figure">
+<img src="/home/gkxk/Pictures/Screenshot%20from%202018-09-20%2017-31-39.png" alt="Screenshot from 2018-09-20 17-31-39" />
+<p class="caption">Screenshot from 2018-09-20 17-31-39</p>
+</div>
+<p>X为电感，且为同名时，<embed src="https://private.codecogs.com/gif.latex?X_L_1%3DL_1+M" />，互感<embed src="https://private.codecogs.com/gif.latex?M%3Dk%5Csqrt%7BL_1L_2%7D" /></p>
+<p>由于等效，<embed src="https://private.codecogs.com/gif.latex?%5Cfrac%7BV_2%5E2%7D%7BR%7D%3D%5Cfrac%7BV%5E2%7D%7BR%27%7D" />，所以<embed src="https://private.codecogs.com/gif.latex?R%27%3D%5Cfrac%7BR%7D%7BP%5E2%7D" /></p>
+<p><strong>等效的原则是功率相等</strong></p>
+<ul>
+<li><strong>Q不够大</strong></li>
+</ul>
+</blockquote>
+<p>L网络阻抗变换</p>
+<blockquote>
+<div class="figure">
+<img src="/home/gkxk/Pictures/Screenshot%20from%202018-09-20%2017-32-09.png" alt="Screenshot from 2018-09-20 17-32-09" />
+<p class="caption">Screenshot from 2018-09-20 17-32-09</p>
+</div>
+<div class="figure">
+<embed src="https://private.codecogs.com/gif.latex?Q%3D%5Cfrac%7BX_S%7D%7BR_L%7D%3D%5Cfrac%7BR_P%7D%7BX_P%7D" />
+<p class="caption">Q==</p>
+</div>
+</blockquote>
+<p><embed src="https://private.codecogs.com/gif.latex?%5Cpi" />和T型匹配网络</p>
+<blockquote>
+<p><embed src="https://private.codecogs.com/gif.latex?%5Cpi" />型网络</p>
+<div class="figure">
+<img src="/home/gkxk/Pictures/Screenshot%20from%202018-09-20%2017-33-15.png" alt="Screenshot from 2018-09-20 17-33-15" />
+<p class="caption">Screenshot from 2018-09-20 17-33-15</p>
+</div>
+<p>T型网络</p>
+<div class="figure">
+<img src="/home/gkxk/Pictures/Screenshot%20from%202018-09-20%2017-33-38.png" alt="Screenshot from 2018-09-20 17-33-38" />
+<p class="caption">Screenshot from 2018-09-20 17-33-38</p>
+</div>
+</blockquote>
+<p>宽带阻抗变换网络</p>
+<blockquote>
+<p>传输线变压器 37</p>
+</blockquote>
+<p>d</p>
+</body>
+</html>{% endblock %}

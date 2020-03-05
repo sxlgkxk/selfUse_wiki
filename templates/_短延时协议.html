@@ -1,0 +1,253 @@
+{% extends "layout.html" %}{% block body %}<h1><a href='/c/文章随笔/领域学习与分析/项目/短延时协议/短延时流媒体协议'>文章随笔/领域学习与分析/项目/短延时协议/短延时流媒体协议 </a> 短延时协议 <i class='fas fa-edit btn_edit' style='color: #ddd' name='/v/文章随笔/领域学习与分析/项目/短延时协议/短延时流媒体协议/短延时协议?action=edit' onclick='window.location.href=this.getAttribute("name")'></i></h1><hr/><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<ul>
+<li>短延时协议
+<ul>
+<li>笔记链接汇总
+<ul>
+<li>MPEG-TS协议: <a href="/v/wiki/tech/专业领域/短延时流媒体协议/MPEG-TS协议">link</a></li>
+<li>ffmpeg的API:</li>
+<li>rtmp协议:</li>
+<li>ws服务器:</li>
+<li>网页页面渲染;</li>
+</ul></li>
+<li>数字电视
+<ul>
+<li>数字电视, 数字电视机顶盒</li>
+<li>webrtc
+<ul>
+<li>samples: https://webrtc.github.io/samples/</li>
+<li>全过程
+<ul>
+<li>ICE服务器</li>
+<li>STUN</li>
+<li>TURN服务器</li>
+<li>SDP:一种文件格式，会话描述协议</li>
+</ul></li>
+<li>api
+<ul>
+<li>RTCPeerConnection</li>
+<li>createDataChannel</li>
+<li>RTCDataChannel</li>
+<li>MediaStream</li>
+<li>MediaStreamTrack</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>主要已有的直播协议(流媒体协议)
+<ul>
+<li>rtp/rtcp/rtsp/rtmp/mms/hls</li>
+<li>均为Internet上针对多媒体数据流的一种传输层协议(和HTTP/HTTPS同级), 均详细说明了所传递音频和视频的数据包格式</li>
+<li>RTP(Real-time Transport Protocol)
+<ul>
+<li>配合协议: RTCP(同用于流媒体系统, 意为RTP控制协议), H.323或SIP(视频会议和<code>一键通系统(push to talk)</code></li>
+<li>是IP电话产业的基础性技术</li>
+<li>建立在UDP协议上</li>
+<li>协议本身无按时发送机制, 也无QoS保证, 不保证有序传送</li>
+<li>通过添加包序列号, 接收方重组发送方的包序列,</li>
+<li>RTP由RTP和RTCP组成, RTP传送数据, RTCP监控QoS并传送会话参与者的信息</li>
+<li>不像http和ftp下载了完整的视频文件, RTP实时收发, 不可重复播放</li>
+<li>如果是play, 则方向由server发往client; 如果是record, 则由client发往server</li>
+</ul></li>
+<li>RTCP(Real-time Transport Control Protocol)
+<ul>
+<li>RTP的姐妹协议, 为RTP提供<code>信道外(out-of-band)控制</code></li>
+<li>传递媒体相关的统计信息, 如:传递字节数, 传输分组数, 丢失分组数, <code>jitter</code>, 单向或双向网络延迟. 可利用这类信息改变编解码器</li>
+<li>SRTCP可提供数据加密和身份认证, 补充RTCP的不足</li>
+</ul></li>
+<li>SRTP(Secure Real-time Transport Protocol) &amp; SRTCP
+<ul>
+<li>安全实时传输协议, 提供加密, 认证, 完整性保护和重放保护</li>
+<li>SRTCP为其伴生协议</li>
+</ul></li>
+<li>RTSP(Real Time Streaming Protocol)
+<ul>
+<li>定义了一对多程序传送多媒体数据(允许同时多个串流需求控制)</li>
+<li>用于实时数据的受控, 点播</li>
+<li>可基于RTP来传输数据, 也可用<code>UDP, 多播UDP, TCP</code></li>
+<li>不强调时间同步, 比较能容忍时间延迟</li>
+<li>可降低服务器端网络用量, 可支持多方视频会议</li>
+<li>协议与HTTP1.1运作方式相似, 代理服务器的Cache功能同样适用于RTSP, 因为RTSP具有重新导向功能, 可根据实际负载情况提供服务的服务器, 以避免单一服务器负载过大造成延迟</li>
+<li>RTSP是一种双向实时传输协议, 允许发送回放快进等请求</li>
+<li>实际采用的一种方案: RTP传视频, RTCP控制视频质量, RTSP控制视频播放 - ---</li>
+</ul></li>
+<li>SDP
+<ul>
+<li>会话描述协议, 不属于传输协议, 属于会话描述格式, 它使用SAP(会话通知协议), SIP(会话初始协议), 实时流协议(RTSP), MIME拓展协议的电子邮件, 及HTTP协议</li>
+<li>通用性强, 不仅适用于组播会话</li>
+<li>SDP连接好会话后, 传送足够信息给会话参与者</li>
+<li>它采用ASP(会话通知协议)周期性地发送UDP数据包到组播地址处, 包含SAP协议头和文本有效载荷(text playload). 这些信息也可通过电子邮件或www网发送</li>
+<li>SDP文本信息包括:
+<ul>
+<li>会话名称, 意图, 持续时间, 构成会话的媒体, 接收地址, 协议结构</li>
+</ul></li>
+</ul></li>
+<li>RTMP/RTMPS(Real Time Messaging Protocol)
+<ul>
+<li>实时消息传送协议, 由Adobe公司推出, 是为Flash播放器传输音视频而开发的</li>
+<li>几种类型:
+<ul>
+<li>TCP之上的明文协议, 端口1935</li>
+<li>RTMPT封装在HTTP请求中, 可穿透防火墙</li>
+<li>RTMPS使用HTTPS连接</li>
+</ul></li>
+<li>其包装的数据可以是AMF格式的数据, 也可以是flv中的数据</li>
+<li>包按照固定大小传输</li>
+<li>与RTSP+RTP组合提供流媒体服务不同, RTMP既可传输多媒体信息也可控制多媒体播放</li>
+<li>RTMP采用TCP协议传输, 增加了额外开销, 为不丢包连接</li>
+<li>浏览器Flash Player默认支持RTMP流</li>
+</ul></li>
+<li>mms(Microsoft Media Server Protocol)
+<ul>
+<li>微软接受.asf文件的一种协议, 在Windows Media Player中键入URL后默认采用此方式</li>
+<li>建立连接后, 使用协议翻转获得最佳连接</li>
+<li>MMSU即MMS协议结合UDP传送</li>
+<li>若MMSU连接失败, 则使用MMST, 用MMS和TCP结合进行传输</li>
+<li>若内容由主发布节点点播发布, 则url的形式是mms://windows_media_server/sample.asf或mms://windows_media_server/LiveEvents</li>
+</ul></li>
+<li>HLS(HTTP Live Streaming)
+<ul>
+<li>苹果公司实现的基于HTTP的流媒体传输协议</li>
+<li>基本上就是分段极小的HTTP点播, 短时常的媒体文件采用MPEG-TS格式</li>
+<li>基本可以认为HLS通过点播方式实现了直播</li>
+<li>因为采用HTTP, 所以无需考虑防火墙和代理. 短时长分段也使得可以快速切换码率</li>
+<li>HLS的延迟总是高于一般的流媒体直播协议</li>
+<li>协议实现步骤:
+<ul>
+<li>对原始音视频源进行H264编码和AAC编码</li>
+<li>音视频封装为MPEG-TS包</li>
+<li>HLS分段生成, 产生m3u8索引文件</li>
+</ul></li>
+</ul></li>
+<li>websocket
+<ul>
+<li>建立双向通话</li>
+<li><a href="https://www.ruanyifeng.com/blog/2017/05/websocket.html">文档</a></li>
+</ul></li>
+<li>webrtc
+<ul>
+<li>各大直播平台多采用RTMP&amp;HLS实现, rtmp有频繁建立TCP有额外开销, 加上FLASH开始退出历史舞台, 所以现在都在进行webrtc的相关开发</li>
+<li>webrtc是为端到端设计的, 分发能力较差</li>
+<li><a href="https://cloud.tencent.com/developer/article/1409973">文档</a></li>
+</ul></li>
+<li>Media Source Extensions(MSE)
+<ul>
+<li>是chrome等主流浏览器支持的一个新的Web API, 允许 JavaScript 动态构建<video>和<audio>的媒体流. 它定义了对象, 允许JavaScript传输媒体流片段到一个HTMLMediaElement, 提供了构建跨浏览器播放器的核心技术, 让浏览器通过JavaScript API来推音视频到media tags上</li>
+</ul></li>
+</ul></li>
+<li>流媒体
+<ul>
+<li>文件格式
+<ul>
+<li>ogg</li>
+<li>asf: 微软推出的格式</li>
+<li>mov</li>
+</ul></li>
+<li>mp4 与fmp4(片段mp4), 以往的mp4为嵌套结构</li>
+</ul></li>
+<li>视频解码
+<ul>
+<li>无需顺序解码</li>
+<li>I帧:</li>
+<li>IDR帧: 为了方便控制编解码, 把首个I帧叫做IDR, DIR帧的作用是立刻刷新, 从IDR帧开始算一个新的编码序列开始编码. 位于IDR后的所有帧都不能引用IDR之前的帧的内容, 而普通的I帧后面的B和P帧都可以引用之前的I帧. 视频流不能从任意节点开始播放, 因为后面的帧总会引用前面的帧</li>
+</ul></li>
+<li>短延时的优化
+<ul>
+<li>评价标准
+<ul>
+<li>服务器负载, CDN缓存支持, 防火墙穿透, 协议简易程度, 实时性, 码流控制机制</li>
+<li><code>自适应流媒体技术</code>: ABR（Adaptive Bitrate)自适应码率</li>
+</ul></li>
+<li>一般采用的方案: 直播采用RTSP/RTMP, 点播用HTTP
+<ul>
+<li>HTTP面向文件传输</li>
+<li>RTMP和RTSP等面向流媒体传输</li>
+<li>RTP传视频, RTCP控制视频质量, RTSP控制视频播放</li>
+<li>RTMP是flv/f4v等格式的流, RTSP是ts/mp4格式的流, HTTP没有特定的流</li>
+<li>RTSP一般需要2-3个通道, 命令与信道分离, RTMP/HTTP一般在一个TCP通道上传输命令和数据</li>
+<li>采用RTP协议的好处是可以在接收到第一帧后就直接开始播放</li>
+</ul></li>
+<li>HTTP类方案(渐进式协议)
+<ul>
+<li>不分片, 以mp4或flv等格式直接传输, 这类格式能比较好地支持从任意时间开始播放未下载完文件, 点击暂停后文件仍被持续下载</li>
+</ul></li>
+<li>HLS
+<ul>
+<li>html5可直接播放</li>
+<li>HLS延时比RTMP, RTSP大</li>
+<li>缩短每个TS文件的大小, <code>nginx</code>伺服</li>
+<li>大量的分割的文件的存储和处理会占用资源, 所以往往将TS切片文件放在内存中进行加速读取</li>
+<li>不断的http请求, 协议建立过程耗时</li>
+</ul></li>
+</ul></li>
+<li>各平台资料搜集
+<ul>
+<li>相关论文</li>
+<li>v2ex
+<ul>
+<li>采集视频输出, 编码RTMP, 推流到nginx,</li>
+</ul></li>
+<li>zhihu</li>
+<li>github
+<ul>
+<li><a href="https://github.com/PearInc/PearPlayer.js">PearInc/PearPlayer.js</a></li>
+</ul></li>
+</ul></li>
+<li>直播延迟分析
+<ul>
+<li>启动延迟: 用户要等到下一个IDR(Instantaneous Decoding Refresh)到来后才开始播放, 平均等待时间为1/2(GOP time)
+<ul>
+<li>开启Gop Cache后, 服务器会从上一个IDR的位置发包, 造成了播放延迟</li>
+<li>减小GOP时间后会造成带宽消耗变大, 编码效率变低</li>
+</ul></li>
+<li>最低延时: 编码时间+网络延迟</li>
+<li>累积延迟: 由于推流和播放速度不对称, 播放端在卡顿后不会加速播放, 造成服务器和客户端的缓存均变大. 可以在缓存过大时选择自动断线重连</li>
+</ul></li>
+<li>相关论文
+<ul>
+<li>关键词:
+<ul>
+<li>stream media</li>
+<li>short delay</li>
+</ul></li>
+<li>词汇
+<ul>
+<li>end-to-end</li>
+<li>multi-path</li>
+<li>stream media</li>
+<li><code>handoff</code>: CDMA术语, 从一个基站向另一个基站转移用户, 硬切换时信道短暂中断, 软切换时多个基站与用户通信</li>
+</ul></li>
+<li>句法学习</li>
+<li><a href="https://dl.acm.org/doi/10.1145/941326.941337">An end-to-end multi-path smooth handoff scheme for stream media</a></li>
+<li><a href="http://msw3.stanford.edu/~ivmsjc/pubs/open/KalmanCSVT2004.pdf">Adaptive Media Playout for Low-Delay Video Streaming Over Error-Prone Channels</a></li>
+<li><a href="http://ayman.elsayed.free.fr/ref/tran_tr02.pdf">ZIGZAG: An Efficient Peer-to-Peer Scheme for Media Streaming</a></li>
+</ul></li>
+<li>项目设计的总体规划
+<ul>
+<li>ts包的解析
+<ul>
+<li>hls协议
+<ul>
+<li>点播</li>
+<li>直播</li>
+</ul></li>
+</ul></li>
+<li>rtmp等更短延时直播方式</li>
+</ul></li>
+<li>短延时
+<ul>
+<li>rtmp方案</li>
+<li>ws+MSE</li>
+</ul></li>
+</ul></li>
+</ul>
+</body>
+</html>{% endblock %}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>{{ title }}</title>
+    <link rel='icon' href='/static/media/image/favicon.ico'>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static',filename='css/fontawesome_all.min.css') }}">
+	<script src="{{ url_for('static',filename='js/jquery-3.3.1.min.js') }}"></script>
+	<script src="{{ url_for('static',filename='js/moment.min.js') }}"></script>
+	<script src="{{ url_for('static',filename='js/MathJax.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/viz.js') }}"></script>
+	<script src="{{ url_for('static',filename='js/full.render.js') }}"></script>
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row" style="background-color: black;color: white">
+        <div class="col-md-4">
+            <a style='color: white;font-size:24px' href="/" class="text-white">{{ stat.name }}</a>
+            <small><sub>---Talk is cheap. Show me the code.</sub></small>
+        </div>
+		<div class="col-md-6">
+            <ul class='nav'>
+                <li class='nav-item dropdown'>
+                    <a class='nav-link dropdown-toggle' data-toggle='dropdown' href='#' style='color:#aaa;background-color:#333' role='button'>tool</a>
+                    <div class='dropdown-menu'>
+                        <a href="/refresh?action" class="dropdown-item" style='color:#ccc'>消除改动标记</a>
+                    </div>
+                </li>
+            {% for category in category_list %}
+                {% if not '/' in category['name'] %}
+                <li class='nav-item dropdown'>
+                    <a class='nav-link dropdown-toggle' data-toggle='dropdown' href='#' style='color:#ccc' role='button'>{{category['name']}}</a>
+                    <div class='dropdown-menu'>
+                        {% for category2 in category_list if category['name'] in category2['name']%}
+                        <a href="{{ '/c/'+category2['name'] }}" class="dropdown-item" style='color:#ccc'>{{category2['name']}}</a>
+                        {% endfor %}
+                    </div>
+                </li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+        </div>
+        {% if not '/v/' in request.path %}
+		<div class="col-md-2"><input type="text" class="form-control" id="searchbar"></div>
+        {% endif %}
+	</div>
+	<div class="row" style='padding-top:20px'>
+		<div class="col-md-12">
+            <div class='container'>
+                {% block body %}{% endblock %}
+            </div>
+		</div>
+	</div>
+	<div class="row" style="background-color: black;color:white">
+		<div class="col-md-12">
+			{% block footer %}
+			<p>copyright sxlgkxk && email:sxlgkxk@gmail.com</p>
+			{% endblock %}
+		</div>
+	</div>
+</div>
+<script src="{{ url_for('static',filename='js/popper.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+<script>
+</script>
+<style>
+	img{
+		max-width: 500px;
+	}
+	pre{
+		background: #DDDDDD;
+	}
+    h1 { font-size: 24px;}
+    h2 { font-size: 22px;}
+    h3 { font-size: 18px;}
+    h4 { font-size: 16px;}
+    h5 { font-size: 12px;}
+    h6 { font-size: 10px;}
+
+	a:link    {color:black;}
+	a:visited {color:black;}
+    .dropdown-menu  {background-color:#333}
+    .dropdown-item:hover  {background-color:#555}
+    .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0; 
+    }
+</style>
+</body>
+</html>

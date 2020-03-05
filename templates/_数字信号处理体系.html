@@ -1,0 +1,162 @@
+{% extends "layout.html" %}{% block body %}<h1><a href='/c/技术总结/专业领域词条/电子信息体系'>技术总结/专业领域词条/电子信息体系 </a> 数字信号处理体系 <i class='fas fa-edit btn_edit' style='color: #ddd' name='/v/技术总结/专业领域词条/电子信息体系/数字信号处理体系?action=edit' onclick='window.location.href=this.getAttribute("name")'></i></h1><hr/><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<h1 id="离散信号与系统分析">离散信号与系统分析</h1>
+<h2 id="离散时间信号">1. 离散时间信号</h2>
+<h2 id="离散时间系统">2. 离散时间系统</h2>
+<h2 id="离散时间信号的频域分析">3. 离散时间信号的频域分析</h2>
+<h2 id="离散时间系统的频域分析">4. 离散时间系统的频域分析</h2>
+<h2 id="离散时间信号的复频域分析">5. 离散时间信号的复频域分析</h2>
+<h2 id="离散时间系统的复频域分析">6. 离散时间系统的复频域分析</h2>
+<h2 id="全通滤波器与最小相位系统">7. 全通滤波器与最小相位系统</h2>
+<h2 id="信号时域抽样与信号重建">8. 信号时域抽样与信号重建</h2>
+<h1 id="离散傅立叶分析">离散傅立叶分析</h1>
+<h2 id="有限长序列的傅立叶分析">1. 有限长序列的傅立叶分析</h2>
+<h2 id="离散傅立叶变换的性质">2. 离散傅立叶变换的性质</h2>
+<h2 id="离散傅立叶变换与z变换的性质">3. 离散傅立叶变换与z变换的性质</h2>
+<h2 id="利用dft计算线性卷积">4. 利用DFT计算线性卷积</h2>
+<h2 id="利用dft分析线性卷积">5. 利用DFT分析线性卷积</h2>
+<h1 id="离散傅立叶变换快速算法">离散傅立叶变换快速算法</h1>
+<h2 id="基2时间抽取fft算法">1. 基2时间抽取FFT算法</h2>
+<h2 id="基2频率抽取fft算法">2. 基2频率抽取FFT算法</h2>
+<h2 id="基4时间抽取fft算法">3. 基4时间抽取FFT算法</h2>
+<h2 id="混合基fft算法">4. 混合基FFT算法</h2>
+<h2 id="实序列的dft算法">5. 实序列的DFT算法</h2>
+<h2 id="idft的快速计算方法">6. IDFT的快速计算方法</h2>
+<h1 id="iir数字滤波器的设计">IIR数字滤波器的设计</h1>
+<h2 id="模拟低通滤波器设计">1. 模拟低通滤波器设计</h2>
+<h2 id="模拟非低通滤波器设计">2. 模拟非低通滤波器设计</h2>
+<h2 id="脉冲响应不变法">3. 脉冲响应不变法</h2>
+<h2 id="双线性变换法">4. 双线性变换法</h2>
+<h1 id="fir数字滤波器的设计">FIR数字滤波器的设计</h1>
+<h2 id="线性相位fir滤波器的特性">1. 线性相位FIR滤波器的特性</h2>
+<h2 id="窗函数法设计线性相位fir滤波器">2. 窗函数法设计线性相位FIR滤波器</h2>
+<h2 id="频率取样法设计线性相位fir滤波器">3. 频率取样法设计线性相位FIR滤波器</h2>
+<h2 id="线性相位fir滤波器的优化设计">4. 线性相位FIR滤波器的优化设计</h2>
+<h2 id="fir与iir数字滤波器的比较">5. FIR与IIR数字滤波器的比较</h2>
+<h1 id="数字滤波器的结构与实现">数字滤波器的结构与实现</h1>
+<h2 id="iir数字滤波器的基本结构">1. IIR数字滤波器的基本结构</h2>
+<h2 id="fir数字滤波器的基本结构">2. FIR数字滤波器的基本结构</h2>
+<h2 id="有限字长效应">3. 有限字长效应</h2>
+<h1 id="多速率信号处理基础">多速率信号处理基础</h1>
+<h2 id="多速率系统中的基本单元">1. 多速率系统中的基本单元</h2>
+<h2 id="抽取滤波器和内插滤波器">2. 抽取滤波器和内插滤波器</h2>
+<h2 id="多相分解">3. 多相分解</h2>
+<h2 id="两通道滤波器组的基本概念">4. 两通道滤波器组的基本概念</h2>
+<h1 id="信号时域分析与小波分析">信号时域分析与小波分析</h1>
+<h2 id="短时傅立叶变换">1. 短时傅立叶变换</h2>
+<h2 id="小波展开与小波变换">2. 小波展开与小波变换</h2>
+<h2 id="小波变换与多分辨分析">3. 小波变换与多分辨分析</h2>
+<h2 id="小波变换与滤波器组">4. 小波变换与滤波器组</h2>
+<h2 id="基于小波的信号处理与应用">5. 基于小波的信号处理与应用</h2>
+<p>因果性:</p>
+<p>信号(离散)</p>
+<blockquote>
+<p>x(t)</p>
+<p>模 len: <embed src="https://private.codecogs.com/gif.latex?E%3D%5Cint_%7B-%5Cinfty%7D%5E%7B+%5Cinfty%7D%7Bx%28t%29%7D%5E%7B2%7Ddt" /></p>
+<p>功率 :<img src="随机信号分析.assets/gif.gif" alt="P=_{T+}" /></p>
+</blockquote>
+<p>信号(连续)</p>
+<blockquote>
+<p>x[n]</p>
+<p>模: <img src="随机信号分析.assets/gif-1537439427587.gif" alt="E=_{n=-}{+}x[n]2" /></p>
+<p>功率: <img src="随机信号分析.assets/gif-1537439427596.gif" alt="P=_{N+}" /></p>
+</blockquote>
+<p>信号操作</p>
+<blockquote>
+<p>尺度变换:</p>
+<ul>
+<li>位移</li>
+<li>幅度放缩</li>
+<li>时域放缩</li>
+</ul>
+</blockquote>
+<p>信号属性</p>
+<blockquote>
+<p>奇偶信号分量(由正负x(t), x(-t)组合)</p>
+<p><embed src="https://private.codecogs.com/gif.latex?X_%7BEV%7D%28even%29" />, <embed src="https://private.codecogs.com/gif.latex?X_%7BOD%7D%28odd%29" /></p>
+</blockquote>
+<p>常见信号实例</p>
+<blockquote>
+<p>实指数信号</p>
+<div class="figure">
+<embed src="https://private.codecogs.com/gif.latex?x%28t%29%3DCe%5E%7Bat%7D" />
+<p class="caption">x(随机信号分析.assets/gif-1537439427791.gif)=Ce^{at}</p>
+</div>
+<p>复指数信号</p>
+<div class="figure">
+<embed src="https://private.codecogs.com/gif.latex?x%28t%29%3De%5E%7Bj%7B%5Comega%7D_0t%7D" />
+<p class="caption">x(随机信号分析.assets/gif-1537439427793.gif)=e^{j{}_0t}</p>
+</div>
+<p>正弦信号</p>
+<div class="figure">
+<embed src="https://private.codecogs.com/gif.latex?x%28t%29%3DAcos%28%7B%5Comega%7D_0t+%5Cvarphi%20%29" />
+<p class="caption">x(随机信号分析.assets/gif-1537439427796.gif)=Acos({}_0t+)</p>
+</div>
+</blockquote>
+<p>常见信号</p>
+<blockquote>
+<p>单位阶跃与单位冲击: <img src="随机信号分析.assets/gif-1537439427806.gif" alt=", u, u[0]=1" /></p>
+<p>相互关系:</p>
+</blockquote>
+<p>#############################</p>
+<p>复指数信号(连续), 离散复指数信号同理</p>
+<blockquote>
+<p>周期性: 以T为周期 (离散复指数信号不一定周期)</p>
+<p>基波频率: T0</p>
+<p>###############</p>
+<p>操作</p>
+<p>欧拉公式: <embed src="https://private.codecogs.com/gif.latex?e%5E%7Bj%5Comega%20_0t%7D%3Dcos%28%5Comega_0t%29+jsin%28%5Comega_0t%29" /></p>
+</blockquote>
+<p>#######################################################</p>
+<p>系统</p>
+<blockquote>
+<p>系统级联: 串联</p>
+<p>性质及检验方法</p>
+<ul>
+<li>记忆性:</li>
+<li>可逆性</li>
+<li>因果性</li>
+<li>稳定性: x(t)有界, 则y(t)有界</li>
+<li>时不变:</li>
+<li>线性</li>
+<li>增量线性: 对应增长变化线性</li>
+</ul>
+</blockquote>
+<p>线性时不变系统</p>
+<blockquote>
+<p>信号可叠加/ 系统无状态</p>
+</blockquote>
+<p>数学变换部分: 信号与系统 / 积分变换</p>
+<p>卷积性质</p>
+<blockquote>
+<p>卷积和</p>
+<div class="figure">
+<img src="随机信号分析.assets/gif-1537439427865.gif" alt="\y[n]=x[n]*h[n]\ y[n]=_{k=-}^{+}x[k]h[n-k]" />
+<p class="caption">\y[n]=x[n]*h[n]\ y[n]=_{k=-}^{+}x[k]h[n-k]</p>
+</div>
+<p>卷积积分</p>
+<div class="figure">
+<embed src="https://private.codecogs.com/gif.latex?y%5Bt%5D%3D%5Cint_%7B-%5Cinfty%7D%5E%7B+%5Cinfty%7Dx%28%5Ctau%20%29%5Cdelta%28t-%5Ctau%29d%5Ctau" />
+<p class="caption">y[t]=_{-}^{+}x(随机信号分析.assets/gif-1537439427999.gif )(t-)d</p>
+</div>
+<p>交换律</p>
+<p>分配律</p>
+<p>结合律</p>
+<p>微分</p>
+<p>积分</p>
+<p>卷积定理</p>
+<div class="figure">
+<img src="随机信号分析.assets/gif-1537439428006.gif" alt="\F^{-1}[F1.F2]=f_1f_2\ F[f1.f2]=F_1F_2" />
+<p class="caption">\F^{-1}[F1.F2]=f_1<em>f_2\ F[f1.f2]=F_1</em>F_2</p>
+</div>
+</blockquote>
+</body>
+</html>{% endblock %}

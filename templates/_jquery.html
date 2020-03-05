@@ -1,0 +1,70 @@
+{% extends "layout.html" %}{% block body %}<h1><a href='/c/wiki/tech/linux技术/网站全栈'>wiki/tech/linux技术/网站全栈 </a> jquery <i class='fas fa-edit btn_edit' style='color: #ddd' name='/v/wiki/tech/linux技术/网站全栈/jquery?action=edit' onclick='window.location.href=this.getAttribute("name")'></i></h1><hr/><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<ul>
+<li>jquery
+<ul>
+<li>dom
+<ul>
+<li>$().remove()</li>
+<li>$().parent()</li>
+<li>.addClass()</li>
+<li>.after()/.before(): 添加兄弟节点</li>
+<li>.append(): 内部扩充</li>
+<li>.attr(): 获取或修改属性值</li>
+<li>.clone()</li>
+<li>.css()</li>
+<li>.empty()</li>
+<li>.detach(): 删减内部</li>
+<li>.hasClass()</li>
+<li>.remove()</li>
+<li>.removeClass()/removeAttr()</li>
+</ul></li>
+<li><p>devtool</p>
+<pre><code>var jqry = document.createElement(&#39;script&#39;);
+jqry.src = &quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;;
+document.getElementsByTagName(&#39;head&#39;)[0].appendChild(jqry);</code></pre></li>
+<li><p>for of</p>
+<pre><code>for (x of $(&#39;a&#39;)){console.log(x.href)}</code></pre></li>
+<li>js基础
+<ul>
+<li>判断类型
+<ul>
+<li>typeof 'sd'==String</li>
+<li>data instanceOf ArrayBuffer</li>
+</ul></li>
+<li>blob
+<ul>
+<li>size</li>
+<li>file: $('input[type=&quot;file&quot;]').file[0]</li>
+</ul></li>
+<li>ArrayBuffer
+<ul>
+<li>byteLength</li>
+<li><p>以数组格式发送图片</p>
+<pre><code>// Sending canvas ImageData as ArrayBuffer
+var img = canvas_context.getImageData(0, 0, 400, 320);
+var binary = new Uint8Array(img.data.length);
+for (var i = 0; i &lt; img.data.length; i++) {
+  binary[i] = img.data[i];
+}
+ws.send(binary.buffer);</code></pre></li>
+</ul></li>
+<li>Uint8Array</li>
+<li>Class: 包含constructor函数, this; extends, super(x,y)</li>
+</ul></li>
+<li>ajax
+<ul>
+<li>.get(url,{})</li>
+</ul></li>
+</ul></li>
+</ul>
+</body>
+</html>{% endblock %}

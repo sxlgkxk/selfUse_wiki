@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="row">
+	<div class="col-md-12">
+        <h2>name: <a href='/c/{{ category }}'>{{category}}/ </a> {{filename}}</h2>
+        
+        <form method='post' action='/v/{{ name }}'>
+            <button type="submit" class="btn btn-secondary" style="width: 100%">提交修改</button>
+            <textarea name="text" style="width: 100%;">{{ text }}</textarea>
+        </form>
+	</div>
+</div>
+<script>
+    $('#searchbar').bind('input',function(){
+        keys=$('#searchbar').val();
+        $.get('/search',{keys:keys},function(data){
+            itemlist='';
+            data=data['itemlist'];
+            for(x in data){
+                item=data[x];
+                itemlist+="<li><a href='/v/"+item['name']+"' class='text-dark'>"+item['filename']+"</a></li>"
+            }
+            $('#item_list').html(itemlist);
+        });
+    });
+    textarea=$('textarea')
+    textarea.css('height',textarea[0].scrollHeight+500+'px')
+</script>
+{% endblock %}

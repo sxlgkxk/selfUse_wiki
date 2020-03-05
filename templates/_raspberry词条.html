@@ -1,0 +1,54 @@
+{% extends "layout.html" %}{% block body %}<h1><a href='/c/技术总结/linux技术词条/OS体系'>技术总结/linux技术词条/OS体系 </a> raspberry词条 <i class='fas fa-edit btn_edit' style='color: #ddd' name='/v/技术总结/linux技术词条/OS体系/raspberry词条?action=edit' onclick='window.location.href=this.getAttribute("name")'></i></h1><hr/><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<ul>
+<li>raspbian比mate快</li>
+<li>manjaro ARM只支持pi4</li>
+<li>kde炫酷,占内存;kfce不占内存</li>
+<li><p>黑边</p>
+<pre><code>/boot/config.txt
+取消第十行注释</code></pre></li>
+<li><p>ssh</p>
+<pre><code>ssh-copy-id -i ~/.ssh/id_rsa.pub pi@192.168.0.142</code></pre></li>
+<li><p>服务器</p>
+<pre><code>cd /home/pi/repo/work/input/gallery
+pm2 start &quot;uwsgi --http 0.0.0.0:5004 --module main:app&quot; -n gallery</code></pre></li>
+<li><p>备份</p>
+<pre><code>sudo dd if=/dev/sdb | gzip&gt; raspberry.gz
+sudo gzip -dc raspberry.gz | sudo dd of=/dev/sdb</code></pre></li>
+<li>内网穿透
+<ul>
+<li>-L, -R两种格式</li>
+<li>ssh:
+<ul>
+<li>-L [remoteip:]remoteport:localip:localport :将本地的端口接收转发至指定的端口</li>
+<li>-R [remoteip:]remoteport:localip:localport :监听远端端口, 转发至本地</li>
+<li>-C :启用压缩功能(减少带宽消耗)</li>
+<li>-N :不执行命令, 只执行端口转发(权限控制防止中间人攻击, 不是必需项)</li>
+<li>-f :后台运行(不好, 第二次运行会报错, 不适用于pm2)</li>
+<li>-g :允许外部主机连接(暂时无用, 不是必需项)</li>
+<li>-D :动态端口转发</li>
+<li>最后参数为正常的user@ip</li>
+<li>反向穿透
+<ul>
+<li>本地上连接服务器 -fCNR</li>
+<li>服务器上建立正向连接 -fCNL</li>
+</ul></li>
+</ul></li>
+<li>ssh-copy-id user@ip</li>
+<li>autossh: autossh -M randport -fCNR remoteport:localip:localport usr@ip
+<ul>
+<li>autossh -M 8020 -gCNR 8023:localhost:22 root@123.57.144.212</li>
+</ul></li>
+<li>M: 8020, 使用8023</li>
+</ul></li>
+</ul>
+</body>
+</html>{% endblock %}

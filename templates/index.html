@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="row">
+	<div class="col-md-12">
+        <h2>Category: <a href='/c/{{ cur_category_dir }}'>{{cur_category_dir}}/ </a> {{cur_category_base}} <span style='font-size:15px'>--{{ size }} items</span></h2>
+
+        <h3>item list</h3>
+        <ul id="item_list">
+        {% for item in item_list %}
+            <li>
+                <a href="{{ '/v/'+item['name'] }}" class="text-dark">{{item['filename']}}</a> 
+                <i class="fas fa-edit btn_edit" style='color: {% if item['edited']=='True' %}#c00{% else %}#ddd{% endif %}' name="{{ '/v/'+item['name']+'?action=edit' }}" onclick="window.location.href=this.getAttribute('name')"></i>
+                <small><a style='color:#aaa' href="{{ '/c/'+item['category'] }}">{{ item['category'] }}</a></small>
+            </li>
+        {% endfor %}
+        </ul>
+	</div>
+</div>
+<script>
+    $('#searchbar').bind('input',function(){
+        keys=$('#searchbar').val();
+        if (keys=='')
+            keys="{{cur_category}}"
+        $.get('/search',{keys:keys},function(data){
+            itemlist='';
+            data=data['itemlist'];
+            for(x in data){
+                item=data[x];
+                itemlist+="<li><a href='/v/"+item['name']+"' class='text-dark'>"+item['filename']+"</a>"
+                itemlist+='<i onclick="window.location.href=\'/v/'+item['name']+'?action=edit'+"'"+'" class="fas fa-edit btn_edit" style="color: #ddd"></i> </li>'
+            }
+            $('#item_list').html(itemlist);
+        });
+    });
+</script>
+{% endblock %}

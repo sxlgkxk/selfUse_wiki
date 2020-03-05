@@ -1,0 +1,64 @@
+{% extends "layout.html" %}{% block body %}<h1><a href='/c/技术总结/linux技术词条/shell体系'>技术总结/linux技术词条/shell体系 </a> shell体系 <i class='fas fa-edit btn_edit' style='color: #ddd' name='/v/技术总结/linux技术词条/shell体系/shell体系?action=edit' onclick='window.location.href=this.getAttribute("name")'></i></h1><hr/><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<h1 id="shell体系">shell体系</h1>
+<h2 id="bash">bash</h2>
+<ul>
+<li>转义
+<ul>
+<li>' &quot; * ? \ ~ ` ! # $ &amp; | { } ; &lt; &gt; ^</li>
+</ul></li>
+</ul>
+<h2 id="fish">fish</h2>
+<h1 id="知识点">知识点</h1>
+<ul>
+<li><code>set word 23</code>: 设置变量
+<ul>
+<li><code>echo $word {$word}</code></li>
+</ul></li>
+<li><code>$status</code>: 上一条命令的结果</li>
+<li><code>(date)</code>: 命令替换</li>
+<li>命令组合: <code>cmd1; and cmd2</code></li>
+<li>命令行参数: <code>argv[0]</code></li>
+<li><del>条件判定</del>: <code>false and false</code></li>
+<li><del>重定向</del></li>
+</ul>
+<h1 id="sites">sites</h1>
+<h1 id="config">config</h1>
+<pre><code>vi ~/.config/fish/config.fish
+
+set fish_greeting &#39;Talk is cheap. Show me the code.&#39;
+set fish_user_paths /home/gkxk/repo/bin
+
+function sshtermux
+    ssh u0_a182@192.168.0.143 -p 8022
+    #ssh u0_a182@192.168.43.1 -p 8022
+end
+
+function sshvultr
+    mosh root@108.160.135.157
+end
+
+alias vi nvim
+alias r ranger
+alias t tmux
+alias lt &quot;ls -t&quot;
+
+set EDITOR nvim</code></pre>
+<ul>
+<li>z:
+<ul>
+<li><code>-e</code>: echo</li>
+<li><code>-l</code>: list</li>
+<li><code>-c</code>: clean unreachable</li>
+</ul></li>
+</ul>
+</body>
+</html>{% endblock %}

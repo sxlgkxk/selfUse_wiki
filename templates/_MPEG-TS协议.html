@@ -1,0 +1,166 @@
+{% extends "layout.html" %}{% block body %}<h1><a href='/c/文章随笔/领域学习与分析/项目/短延时协议/短延时流媒体协议/基础知识'>文章随笔/领域学习与分析/项目/短延时协议/短延时流媒体协议/基础知识 </a> MPEG-TS协议 <i class='fas fa-edit btn_edit' style='color: #ddd' name='/v/文章随笔/领域学习与分析/项目/短延时协议/短延时流媒体协议/基础知识/MPEG-TS协议?action=edit' onclick='window.location.href=this.getAttribute("name")'></i></h1><hr/><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<ul>
+<li>ts流
+<ul>
+<li>canvas绘制
+<ul>
+<li>setInterval</li>
+</ul></li>
+<li>JSMpeg库
+<ul>
+<li>内容
+<ul>
+<li>名词
+<ul>
+<li>congestion: 阻塞</li>
+<li>relay: 中继</li>
+</ul></li>
+<li>github: https://github.com/phoboslab/jsmpeg</li>
+<li>官网: https://jsmpeg.com/</li>
+<li>低延时直播: 50ms</li>
+<li>连接websocket服务器, 接收二进制MPEG-TS数据</li>
+<li>使用ffmpeg作为源, node作为服务器</li>
+<li>样例
+<ul>
+<li>VNC, 屏幕映射到显示屏上</li>
+</ul></li>
+<li>MPEG1视频编码, MP2音频编码
+<ul>
+<li>把一个mp4文件转换为.ts文件: <code>ffmpeg -i in.mp4 -f mpegts -codec:v mpeg1video -codec:a mp2 -b 0 out.ts</code></li>
+</ul></li>
+<li>直播时, jsmpeg会无视所有时间戳, 直接解码收到的所有内容, 因此音频应该交错分布于视频之间. -muxdelay选项来设置
+<ul>
+<li>jsmpeg暂时不支持缓存几秒后按顺序播放所有文件. 现在内部的缓存只有视频512k, 音频128k, 新来的直接挤掉旧的</li>
+<li>网络状况差时, 增大videoBufferSize, audioBufferSize</li>
+</ul></li>
+<li><p>代码</p>
+<pre><code>&lt;div class=&#39;jsmpeg&#39; data-url=&#39;video.ts&#39;&gt;&lt;/div&gt;</code></pre>
+url指向一个MPEG.ts文件或者一个ws服务器ws://
+<ul>
+<li>选项: ('video.ts' {loop: true, autoplay: true}) 或者html中data-loop=&quot;true&quot; data-autoplay=&quot;true&quot;</li>
+</ul></li>
+</ul></li>
+<li>api
+<ul>
+<li>.play()</li>
+<li>.pause()</li>
+<li>.stop()</li>
+<li>.nextFrame()</li>
+<li>.destroy()</li>
+<li>.volume</li>
+<li>.currentTime</li>
+<li>.paused</li>
+<li>使用
+<ul>
+<li>只需设置video的data-url属性为.ts文件或ws://地址即可</li>
+</ul></li>
+<li>案例工程
+<ul>
+<li><p>jsmpeg先clone下来</p>
+<pre><code>node websocket-relay.js supersecret 8081 8082</code></pre>
+<pre><code>http-server -p 8080</code></pre>
+<pre><code>ffmpeg \
+-f v4l2 \
+-framerate 60 -video_size 320x180 -i /dev/video0 \
+-f mpegts \
+-codec:v mpeg1video -s 320x180 -b:v 1000k -bf 0 \
+http://localhost:8081/supersecret   </code></pre></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>源
+<ul>
+<li>.m3u8和.ts不同, .m3u8采用的是hls协议, 是对视频的分块, 而.ts是直接发送逐帧的视频信息, 采用的是MPEG-TS格式</li>
+<li>源: 编码生成的MPEG1/MP2, 可由ffmpeg生成</li>
+<li>电视台
+<ul>
+<li>几乎不可能, 现在需要一个tunner来对射频信号进行调制</li>
+<li>网上只有.m3u8的地址</li>
+</ul></li>
+<li>本地摄像头video0
+<ul>
+<li>实现实时流的最好方式</li>
+<li>摄像头有延迟, 最好采用obs对屏幕进行截取推流
+<ul>
+<li>产生rtmp包, 然后需要自己将rtmp包变成MPEG-TS格式
+<ol style="list-style-type: decimal">
+<li>运行JSMpeg工程下的websocket-relay.js <code>node websocket-relay.js passwd 8081 8082</code> passwd是密码, 8081是ffmpeg推送的输入端口, 8082是输出端口</li>
+</ol></li>
+</ul></li>
+<li>名词: 生成推流</li>
+</ul></li>
+</ul></li>
+<li>服务器端
+<ul>
+<li>一个jsmpeg自带的中继websocket-relay.js</li>
+<li>ws</li>
+</ul></li>
+<li>ts包的解析
+<ul>
+<li>内容
+<ul>
+<li>教程带源码: https://www.jianshu.com/p/f8aeaf35519b</li>
+<li>ts link2: https://blog.csdn.net/cabbage2008/article/details/49281729</li>
+<li>ts link3: https://www.jianshu.com/p/2b812a4e3315</li>
+<li>ts link4: https://my.oschina.net/u/3506656/blog/909714</li>
+<li>ts link5: https://my.oschina.net/u/3506656/blog/909714</li>
+<li>ts link6: https://wenku.baidu.com/view/d5d74d20bb1aa8114431b90d6c85ec3a87c28b7e.html</li>
+</ul></li>
+<li>ts-header
+<ul>
+<li>包头</li>
+<li>PMT, PAT</li>
+<li>sync_byte: 8bit</li>
+</ul></li>
+</ul></li>
+<li>MSE(Media Source Extensions)
+<ul>
+<li>内容
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/MediaStream">文档</a></li>
+<li>容器层</li>
+<li>websocket的视频封装格式为flv, 浏览器支持通过flv.js实现</li>
+<li>html5标签的限制
+<ul>
+<li>不支持流</li>
+</ul></li>
+<li>MSE作为W3C新标准允许js传输流媒体片段的哦啊.HTMLMediaElement</li>
+<li>用js可以动态地操纵媒体流, 进行封装, 解码</li>
+<li><a href="https://blog.csdn.net/cn_514/article/details/98735739">案例工程</a></li>
+<li>把video的src换成MediaStream对象, 这种对象包含媒体文件及其状态信息,</li>
+</ul></li>
+<li>API</li>
+</ul></li>
+<li>ffmpeg
+<ul>
+<li>内容
+<ul>
+<li>包含libavcodec(一个音视频的解码库), libavformat(一个音视频的格式转换库)</li>
+<li>包含ffplay, ffserver, ffprobe</li>
+</ul></li>
+<li>api
+<ul>
+<li>ffmpeg -i input.avi -b:v 640k output.ts
+<ul>
+<li><code>-i</code>: 输入文件</li>
+<li><code>output.ts</code>: 输出文件</li>
+<li><code>-b:v 640k</code>: 码率640k</li>
+<li><code>-acodec copy</code></li>
+<li><code>-vcodec copy</code></li>
+<li><code>-f flv</code></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</body>
+</html>{% endblock %}

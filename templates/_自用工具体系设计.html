@@ -1,0 +1,69 @@
+{% extends "layout.html" %}{% block body %}<h1><a href='/c/文章随笔/领域学习与分析/项目/其它'>文章随笔/领域学习与分析/项目/其它 </a> 自用工具体系设计 <i class='fas fa-edit btn_edit' style='color: #ddd' name='/v/文章随笔/领域学习与分析/项目/其它/自用工具体系设计?action=edit' onclick='window.location.href=this.getAttribute("name")'></i></h1><hr/><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+</head>
+<body>
+<ul>
+<li>portal
+<ul>
+<li>端口
+<ul>
+<li>video: 5005</li>
+<li>gallery; 5004</li>
+<li>read: 5003</li>
+<li>pic: 5002</li>
+<li>paste: 5001</li>
+<li>wiki: 5000</li>
+<li>dl_webui: 5008</li>
+<li>http-server; 5014</li>
+<li>rpg: 5016</li>
+<li>ssh
+<ul>
+<li>pi: 8022</li>
+<li>mi2: 8023</li>
+<li>mi2_: 8024</li>
+<li>tp: 8025</li>
+</ul></li>
+</ul></li>
+<li>终端
+<ul>
+<li>本地: video/gallery/read/wiki/dl_webui(bash/aria2c/aria2c_proxy/ytb/ytb_proxy)</li>
+<li>108: v2ray</li>
+<li>123: dl_webui(bash/aria2c/aria2c_proxy/ytb/ytb_proxy), http-server</li>
+<li>mi2/mi2_: dl_webui(bash/ytb/aria2c)</li>
+<li>pi: video/gallery/read/wiki ## ptool ``` #!/usr/bin/python3</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>import os import json import sys import shutil import subprocess as sp</p>
+<p>path_exist=os.path.exists path_join=os.path.join</p>
+<p>DEFAULT_CONFIG=path_join(os.environ['HOME'],'.ptool_config.json')</p>
+<p>app_templates=list()</p>
+<p>if not path_exist(DEFAULT_CONFIG): res=input('{} not exist, create it now?(Y/n)'.format(DEFAULT_CONFIG)) if res in ['','Y','y']: ip = input('your site would be serve at: (default:127.0.0.1)') site_path = input('your site would be save in: (default:{})'.format(os.path.abspath('.'))) if not site_path: site_path=os.path.abspath('.') with open('{}'.format(DEFAULT_CONFIG),'w') as f: f.write(json.dumps({&quot;ip&quot;:ip,&quot;site_path&quot;:site_path})) else: print('you should create config file firstyou may change 'DEFAULT_CONFIG' at line 6 in ptool to save your config in another place') sys.exit()</p>
+<p>if len(sys.argv)&lt;2: print('not enough args') print('use command 'new, status, start/stop'') sys.exit()</p>
+<p>with open(DEFAULT_CONFIG,'r') as f: config=json.loads(f.read()) ip,site_path=config['ip'],config['site_path']</p>
+<p>apptools=dict() for r,d,f in os.walk(site_path): if 'apptool' in os.listdir(r): if os.path.basename(os.path.dirname(r))=='templates': app_templates.append(os.path.basename(r)) apptools.update({r[r.rindex('/')+1:]:path_join(r,'apptool')})</p>
+<p>def output_new(): app_template=input('use app template in {} (default:'app')'.format(app_templates)) if app_template=='': app_template='app' if len(sys.argv)&gt;=3: names=sys.argv[2:] else: names=['newapp'] for name in names: if path_exist(path_join(site_path,name)): print('{} exist, failed to create it'.format(path_join(site_path,name))) else: shutil.copytree(path_join(site_path,'static/templates',app_template),path_join(site_path,name)) print('{} created successfully'.format(path_join(site_path,name)))</p>
+<p>def output_config(): print('{} config:'.format('DEFAULT_CONFIG',DEFAULT_CONFIG)) if len(sys.argv)&gt;=3: names=sys.argv[2:] else: names=list(apptools.keys()) for name in names: p=apptools[name] os.chdir(p[:p.rindex('/')]) output=sp.getoutput('{} {}'.format(p,sys.argv[1])) print(output)</p>
+<p>def output_exec(): output=sp.getoutput('pm2 jlist') process_started=[x['name'] for x in json.loads(output)]</p>
+<pre><code>if len(sys.argv)&gt;=3:
+    names=sys.argv[2:]
+else:
+    names=list(apptools.keys())
+for name in names:
+    p=apptools[name]
+    os.chdir(p[:p.rindex(&#39;/&#39;)])
+    action=sys.argv[1]
+    if action==&#39;start&#39; and name in process_started:
+        action=&#39;restart&#39;
+    output=sp.getoutput(&#39;{} {}&#39;.format(p,action))
+output_status()</code></pre>
+<p>def output_status(): output=sp.getoutput('pm2 jlist') _statuses=json.loads(output) names=list(apptools.keys()) statuses=dict() for name in names: statuses.update({name:'stopped'}) for _status in _statuses: if _status['name'] in names: statuses.update({_status['name']:_status['pm2_env']['status']}) for name in names: print('{:&lt;10} {:&lt;10}'.format(name,statuses[name]))</p>
+<p>if sys.argv[1]=='status': output_status() elif sys.argv[1] in ['start','stop']: output_exec() elif sys.argv[1]=='new': output_new() elif sys.argv[1]=='config': output_config() ```</p>
+</body>
+</html>{% endblock %}
